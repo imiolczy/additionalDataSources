@@ -1,3 +1,3 @@
-# additionalDataSourcesTest
+# additionalDataSources
 
-The data depo for the cource BigDataAnalytics
+Here are further data sources, which are used in the context of the project of Data Science.
