@@ -89,7 +89,8 @@ for id in compID:
 
 #Fit linear Model
 X_train = e10[['e10','previous_e10','e10_51d4b432-a095-1aa0-e100-80009459e03a','e10_0d206f86-308b-43ae-a157-b7e625bdf61b','e10_bf9d3a1f-c8a0-4ec3-93ed-018900da43c1','OilPriceDay€']].dropna()
-e10NA = e10.dropna()
+e10NA = X_train[['e10']]
+X_train = X_train.drop(columns='e10')
 model = RandomForestRegressor()
 
 x_train, x_test, y_train, y_test = train_test_split(X_train, e10NA.e10, shuffle=False, train_size=0.8)
