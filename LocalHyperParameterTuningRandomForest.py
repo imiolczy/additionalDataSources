@@ -128,14 +128,14 @@ def hyperParameterTuning(X_train, y_train):
 
 def hyperParameterTuningV2(X_train, y_train):
     param_tuning = {'nthread':[-1], #when use hyperthread, xgboost may become slower
-              'learning_rate': [0.03], #so called `eta` value
+              'learning_rate': [0.03, 0.1], #so called `eta` value
               'bootstrap': [True, False],
-              'max_depth': [100, 200, 300, 400, 500],
-              'max_features': [2, 3, 4],
-              'min_samples_leaf': [3, 4, 5],
-              'min_samples_split': [8, 10, 12],
-              'n_estimators': [100, 200, 300, 500, 1000]
-              } #parameters from: https://ieeexplore.ieee.org/document/8966799 
+              'max_depth': [30, 50, 80, 100],
+              'max_features': [1, 2, 3],
+              'min_samples_leaf': [1, 2, 3],
+              'min_samples_split': [4, 6, 8, 10],
+              'n_estimators': [50, 75, 100, 125]
+              }
 
     xgb_model = XGBRegressor()
 
