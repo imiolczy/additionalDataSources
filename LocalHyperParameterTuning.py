@@ -89,7 +89,7 @@ for id in compID:
   e10 = e10.merge(sub,how='left',on='date')
 
 #Fit linear Model
-X_train = e10[['previous_e10','e10_fd606c1d-2f43-47df-8934-d1ea98871767','e10_51d4b432-a095-1aa0-e100-80009459e03a','e10_0d206f86-308b-43ae-a157-b7e625bdf61b','e10_5cb08765-da25-4bee-a118-a5710cb9aae5','e10_bf9d3a1f-c8a0-4ec3-93ed-018900da43c1','OilPriceDay€']].dropna()
+X_train = e10[['previous_e10','e10_fd606c1d-2f43-47df-8934-d1ea98871767','e10_51d4b432-a095-1aa0-e100-80009459e03a','e10_0d206f86-308b-43ae-a157-b7e625bdf61b','e10_5cb08765-da25-4bee-a118-a5710cb9aae5','e10_bf9d3a1f-c8a0-4ec3-93ed-018900da43c1']].dropna()
 e10NA = e10.dropna()
 model = LinearRegression()
 
