@@ -93,7 +93,7 @@ X_train = e10[['previous_e10','e10_fd606c1d-2f43-47df-8934-d1ea98871767','e10_51
 e10NA = e10.dropna()
 model = LinearRegression()
 
-x_train, x_test, y_train, y_test = train_test_split(X_train, e10NA.e10, shuffle=False, train_size=0.8)
+x_train, x_test, y_train, y_test = train_test_split(X_train, e10NA.e10, shuffle=False, train_size=0.7)
 model.fit(x_train, y_train)
 print('R2 score after fiting linear model:')
 print(model.score(x_test, y_test))
@@ -129,12 +129,12 @@ def hyperParameterTuning(X_train, y_train):
 def hyperParameterTuning2(X_train, y_train):
     param_tuning = {'nthread':[-1], #when use hyperthread, xgboost may become slower
               'objective':['reg:linear'],
-              'learning_rate': [0.03], #so called `eta` value
-              'max_depth': [3, 5, 7, 8, 9],
-              'min_child_weight': [6, 5, 4, 3, 2] ,
-              'subsample':  [0.6, 0.7, 0.8, 0.9],
-              'colsample_bytree': [0.9, 0.8, 0.7],
-              'n_estimators': [300, 500, 800, 1000, 1200]
+              'learning_rate': [0.2, 0.1, 0.05, 0.03], #so called `eta` value
+              'max_depth': [3, 5],
+              'min_child_weight': [6, 5, 4] ,
+              'subsample':  [0.7, 0.8, 0.9],
+              'colsample_bytree': [0.9, 0.8],
+              'n_estimators': [300, 500, 1000, 1200]
               }
 
     xgb_model = XGBRegressor(verbosity = 0)
@@ -151,11 +151,22 @@ def hyperParameterTuning2(X_train, y_train):
 
     return gsearch.best_params_
 
-#Start Hyper Parameter Tuning
+# #Start Hyper Parameter Tuning
+print('Hyper Parameter Tuning V1')
+start = time.time()
+best_parameters = hyperParameterTuning(x_train, y_train)
+end = time.time()
+runtime = round((end-start)/60,2)
+print('The Hyper Parameter Tuning had a runtime of '+str(runtime)+' Minutes')
+print('The best parameters are: '+str(best_parameters))
+print()
+print()
+
+print('Hyper Parameter Tuning V2')
 start = time.time()
 best_parameters = hyperParameterTuning2(x_train, y_train)
 end = time.time()
 runtime = round((end-start)/60,2)
 print('The Hyper Parameter Tuning had a runtime of '+str(runtime)+' Minutes')
-print('The beste parameters are: '+str(best_parameters))
+print('The best parameters are: '+str(best_parameters))
 
